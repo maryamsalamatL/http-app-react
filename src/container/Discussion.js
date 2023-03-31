@@ -26,6 +26,7 @@ const Discussion = () => {
     };
 
     getComments();
+    console.log(comments);
   }, []);
 
   const selectCommentHandler = (id) => {
@@ -41,11 +42,21 @@ const Discussion = () => {
         clickHandler={selectCommentHandler}
         error={error}
       />
-      <FullComment
-        selectedId={selectedId}
-        setComments={setComments}
-        setSelectedId={setSelectedId}
-      />
+      {comments ? (
+        comments.length ? (
+          <FullComment
+            selectedId={selectedId}
+            setComments={setComments}
+            setSelectedId={setSelectedId}
+          />
+        ) : (
+          <p style={{ color: "#cc8383", margin: "5px" }}>
+            there is no comment!
+          </p>
+        )
+      ) : (
+        ""
+      )}
     </div>
   );
 };

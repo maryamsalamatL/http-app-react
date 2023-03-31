@@ -1,8 +1,7 @@
 import styles from "./NewComment.module.css";
 import { useState } from "react";
-import axios from "axios";
-import http from "../services/httpService";
 import { postComment, getAllComments } from "../services/requestService";
+import { BsXCircleFill } from "react-icons/bs";
 import profile1 from "./pictures/profile1.png";
 import profile2 from "./pictures/profile2.png";
 import profile3 from "./pictures/profile3.png";
@@ -57,6 +56,7 @@ const NewComment = ({ setComments, setIsShow }) => {
 
   return (
     <div className={styles.container}>
+      <BsXCircleFill className={styles.icon} onClick={() => setIsShow(false)} />
       <form className={styles.form}>
         <div className={styles.inputBox}>
           <label>name</label>
@@ -68,9 +68,11 @@ const NewComment = ({ setComments, setIsShow }) => {
         </div>
         <div className={styles.inputBox}>
           <label>content</label>
-          <input type="textarea" name="body" onChange={changeHandler}></input>
+          <textarea name="body" onChange={changeHandler}></textarea>
         </div>
-        <button onClick={addNewComment}>add</button>
+        <button onClick={addNewComment} className={styles.addBtn}>
+          add
+        </button>
       </form>
     </div>
   );
